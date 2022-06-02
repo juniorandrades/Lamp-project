@@ -1,33 +1,42 @@
 
-let imagem = document.getElementById("imagem")
-let turnOn = document.getElementById("turnOn")
-let turnOff = document.getElementById("turnOff")
+let lamp = document.getElementById("lamp")
+let turnOnOff = document.getElementById("turnOnOff")
 
 function isLampBroken () {
 
-    return imagem.src.indexOf ('quebrada') > -1
+    return lamp.src.indexOf ('quebrada') > -1
 
 }
 
-function ligar () {
+function lampOn () {
     if (!isLampBroken ()) {
-    imagem.src="ligada.jpg"
+    lamp.src="ligada.jpg"
     }
 }
 
 
-function desligar () {
+function lampOff () {
     if (!isLampBroken ()) {
-    imagem.src ='desligada.jpg'
+    lamp.src ='desligada.jpg'
     }
 }
 
-function quebrada () {
-    imagem.src = 'quebrada.jpg'
+function lampBroken () {
+    lamp.src = 'quebrada.jpg'
 }
- 
-turnOn.addEventListener("click", ligar)
-turnOff.addEventListener("click", desligar)
-imagem.addEventListener("dblclick", quebrada)
-imagem.addEventListener("mouseover", ligar)
-imagem.addEventListener("mouseout", desligar)
+
+function lampOnOff () {
+    if (!isLampBroken ()) {
+    if (turnOnOff.textContent == 'Ligar') {
+        lampOn ();
+        turnOnOff.textContent = 'Desligar'
+    } else {
+        lampOff ();
+        turnOnOff.textContent = 'Ligar'
+    }
+}
+}
+turnOnOff.addEventListener("click", lampOnOff)
+lamp.addEventListener("dblclick", lampBroken)
+lamp.addEventListener("mouseover", lampOn)
+lamp.addEventListener("mouseout", lampOff)
